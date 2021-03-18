@@ -113,4 +113,12 @@ public class OperacionesDigrafo {
         }
         return verticesConCaminoA;
     }
+
+    public List<Integer> componentesDeLasIslas(){
+        List<Integer> listAux = new ArrayList<>();
+        for (int i = 0; i < digrafo.listasDeAdyacencias.size(); i++){
+            listAux.add(i);
+        }
+        return listAux;
+    }
 }

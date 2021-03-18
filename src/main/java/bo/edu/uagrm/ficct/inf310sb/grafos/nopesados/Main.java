@@ -8,20 +8,17 @@ import bo.edu.uagrm.ficct.inf310sb.grafos.pesados.GrafoPesado;
 public class Main {
     public static void main(String args[]) throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste, ExcepcionAristaNoExiste {
         //grafo();
-        //digrafo();
-        //grafoBfs();
-        //digrafoBfs();
-        //grafoDfs();
-        //digrafoDfs();
-        //operacionesGrafo();
-        //digrafoFuertementeConexo();
-        //existeCicloGrafo();
-        //digrafoVerif();
-        //existeCicloDigrafo();
-        //algoritmoWharsall();
-        //verticesConCaminoA();
-        //listaDeAdyacencia();
-        digrafo();
+/*        digrafo();// ejercicio 1
+        existeCicloDigrafo(); // ejercicio 2
+        digrafoDebilmenteConexo(); //ejercicio 3
+        existeCicloGrafo(); // ejercicio 4
+        operacionesGrafo(); // ejercicio 5
+        digrafoVerif();  // ejercicio 6
+        algoritmoWharsall();  // ejercicio 7
+        verticesConCaminoA(); // ejercicio 16
+        digrafoDfs();
+        */
+        hayCamino();
     }
     private static void grafo() throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste {
         Grafo grafo = new Grafo(3);
@@ -32,8 +29,10 @@ public class Main {
 
         System.out.println(grafo);
     }
+
+    // ejercicio 1
     private static void digrafo() throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste, ExcepcionAristaNoExiste {
-        Digrafo digrafo = new Digrafo(5);
+        Digrafo digrafo = new Digrafo(6);
 
         digrafo.insertarArista(0,0);
         digrafo.insertarArista(1,0);
@@ -41,13 +40,13 @@ public class Main {
         digrafo.insertarArista(2,0);
         digrafo.insertarArista(2,1);
         //digrafo.insertarArista(2,2);
-        OperacionesDigrafo opDigrafo =  new OperacionesDigrafo(digrafo,0);
-        System.out.println(digrafo);
+        OperacionesDigrafo opDigrafo = new OperacionesDigrafo(digrafo,0);
+        System.out.println(opDigrafo.componentesDeLasIslas());
 
 
         /*System.out.println(digrafo.cantidadDeAristas());*/
         //digrafo.eliminarArista(2,2);
-        System.out.println(opDigrafo.cantidadDeIslasDigrafo());
+        //System.out.println(opDigrafo.cantidadDeIslasDigrafo());
     }
 
     private static void digrafoDfs() throws ExcepcionAristaYaExiste, ExcepcionNroVerticesInvalido, ExcepcionAristaNoExiste {
@@ -84,8 +83,9 @@ public class Main {
         OperacionesGrafo operaciones = new OperacionesGrafo(grafo);
         System.out.println(operaciones.cantidadDeIslas());
     }
-
-    private static void digrafoFuertementeConexo() throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste, ExcepcionAristaNoExiste {
+    //3. Para un grafo dirigido implementar un algoritmo para encontrar si es débilmente conexo
+    //ya esta implementado
+    private static void digrafoDebilmenteConexo() throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste, ExcepcionAristaNoExiste {
         Digrafo digrafo = new Digrafo(4);
 
         digrafo.insertarArista(0,2);
@@ -98,7 +98,7 @@ public class Main {
         Conexo conexo = new Conexo(digrafo,0);
 
         //System.out.println(conexo.esConexo(digrafo,1));
-        System.out.println(fuertementeConexo.esFuertementeConexo(digrafo));
+        System.out.println(fuertementeConexo.esDebilmenteConexo(digrafo));
     }
 // 4. Para un grafo no dirigido implementar un algoritmo para encontrar que en que vértices del grafo hay ciclos
 
@@ -160,8 +160,7 @@ public class Main {
         OperacionesDigrafo opDigrafo = new OperacionesDigrafo(digrafo,2);
         System.out.println(opDigrafo.existeCiclo());
     }
-    //3. Para un grafo dirigido implementar un algoritmo para encontrar si es débilmente conexo
-    //ya esta implementado
+
 
     //7. Para un grafo dirigido implementar el algoritmo de Wharsall, que luego muestre entre que vértices hay camino
 
@@ -203,16 +202,24 @@ public class Main {
         System.out.println(opDigrafo.verticesConCaminoA(3));
     }
 
-    // grafo no pesados
 
-    private static void listaDeAdyacencia() throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste {
-        GrafoPesado grafoPesado = new GrafoPesado(5);
 
-        grafoPesado.insertarArista(0,1,20);
-        grafoPesado.insertarArista(1,2,10);
-        grafoPesado.insertarArista(3,0,60);
-        grafoPesado.insertarArista(2,4,200);
+    private static void hayCamino() throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste, ExcepcionAristaNoExiste {
+        Digrafo digrafo = new Digrafo(7);
 
-        System.out.println(grafoPesado.adyacentesDeVertice(0));
+        digrafo.insertarArista(0,1);
+        digrafo.insertarArista(1,2);
+        digrafo.insertarArista(1,5);
+        digrafo.insertarArista(1,4);
+        digrafo.insertarArista(2,6);
+        digrafo.insertarArista(3,1);
+        digrafo.insertarArista(4,0);
+        digrafo.insertarArista(4,3);
+        digrafo.insertarArista(5,2);
+        digrafo.insertarArista(6,5);
+
+        FuertementeConexo opDigrafo = new FuertementeConexo(digrafo);
+        //System.out.println(opDigrafo.componentesFuertementeConexas(digrafo));
+
     }
 }

@@ -250,22 +250,26 @@ public class GrafoPesado {
         }
         return grafoAux;
     }*/
-public GrafoPesado kruskal () throws ExcepcionNroVerticesInvalido, ExcepcionAristaYaExiste {
-    GrafoPesado grafoAux = new GrafoPesado(cantidadDeVertices());
-    List<AdyacenteConPeso> listaOrdenada = new ArrayList<AdyacenteConPeso>();
-    listaOrdenada = ordenarListasDeAdyacencia();
 
-    for (int i = 0; i < listaOrdenada.size(); i++) {
-        int n = i;
-        if (i > (listaOrdenada.size() / 2) ) {
-            n =  n - (listaOrdenada.size() / 2) + 1;
+    private void cargarListaDeAristas(List<AdyacenteConPesoIndiceOrigen> lista) {
+        int i = 0;
+        for (List<AdyacenteConPeso> unaListaDeAdyacencia : this.listasDeAdyacencias) {
+            for (AdyacenteConPeso unAdyacenteConPeso : unaListaDeAdyacencia) {
+                AdyacenteConPesoIndiceOrigen adyacenteEnTurno = new AdyacenteConPesoIndiceOrigen(i,
+                        unAdyacenteConPeso.getIndiceVertice(), unAdyacenteConPeso.getPeso());
+                AdyacenteConPesoIndiceOrigen adyacenteParalelo = new AdyacenteConPesoIndiceOrigen(unAdyacenteConPeso.getIndiceVertice(),
+                        i, unAdyacenteConPeso.getPeso());
+                if (!lista.contains(adyacenteParalelo)) {
+                    lista.add(adyacenteEnTurno);
+                }
+            }
+            i++;
         }
-        int posDestino = listaOrdenada.get(i).getIndiceVertice();
-        double peso = listaOrdenada.get(i).getPeso();
-        if (!grafoAux.existeAdyacencia(n,posDestino)){
-            grafoAux.insertarArista(n, posDestino, peso);
+        Collections.sort(lista);
+    }
+    private void cargarListaDeVertices(List<Integer> listaDeVertices) {
+        for (Integer unVertice : listaDeVertices) {
+            this.insertarVertice();
         }
     }
-    return grafoAux;
-}
 }

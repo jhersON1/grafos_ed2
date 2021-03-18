@@ -39,7 +39,7 @@ public class Main {
         //DFS dfs = new DFS(grafoPesado,0);
         GrafoPesado grafoAux = new GrafoPesado(grafoPesado.cantidadDeVertices());
 
-        grafoAux = grafoPesado.kruskal();
+        //grafoAux = grafoPesado.kruskal();
 
         List<AdyacenteConPeso> listaAux = new ArrayList<>();
 
