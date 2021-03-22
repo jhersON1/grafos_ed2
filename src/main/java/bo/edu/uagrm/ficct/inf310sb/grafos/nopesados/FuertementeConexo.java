@@ -37,11 +37,11 @@ public class FuertementeConexo {
     }
 
     public boolean esDebilmenteConexo (Digrafo unDigrafo) throws ExcepcionAristaNoExiste {
-        if (esConexo()){
-            if (!esFuertementeConexo(unDigrafo)){
-                return true;
-            }
-        }
+        
+         if (!esFuertementeConexo(unDigrafo)){
+             return true;
+          }
+        
         return false;
     }
 
